@@ -12,9 +12,7 @@ async function getUserProgress(req, res) {
       return;
     }
     const newProgress = new ProgressModel({
-      user_id: id,
-      classic: categories.map(categ => ({category: categ})),
-      mastery: categories.map(categ => ({category: categ})),
+      user_id: id
     })
     const progress = await newProgress.save()
     res.json(progress)
@@ -29,15 +27,14 @@ async function progressCategory(req, res) {
     const {user_id, category, mode} = req.body;
     console.log(req.body);
     const newProgress = await ProgressModel.findOneAndUpdate(
-      { user_id, [`${mode}.category`]: category},
-      { $inc:{[`${mode}.$.level`]: 1} },
+      { user_id },
+      { $inc: { [`${mode}.${category}`]: 1} },
       { new: true }
     )
 
     if(!newProgress){
       throw new Error("Not Updated");
     }
-    console.log(newProgress);
     res.json(newProgress);
 
   } catch (error) {

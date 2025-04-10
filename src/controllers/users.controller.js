@@ -27,12 +27,25 @@ async function createUser(req, res){
   try {
     const newUser = new UsersModel(req.body);
     const user = await newUser.save()
-    const newProgress = new ProgressModel({user_id:user._id})
-    const progress = await newProgress.save()
     res.json([user, progress])
   } catch (error) {
     res.status(500).json({ error })
   }
 }
 
-module.exports = { getUsers, getUser, createUser }
+async function updateUser(req, res) {
+  try {
+    const { user_id, avatar, username } = req.body
+    const result = await UsersModel.findByIdAndUpdate(
+      user_id,
+      { $set: { avatar, username }},
+      { new: true, runValidators: true }
+    )
+    console.log("UpdateUser:",result);
+    res.json( result )
+  } catch (error) {
+    res.status(500).json({error})
+  }
+}
+
+module.exports = { getUsers, getUser, createUser, updateUser }

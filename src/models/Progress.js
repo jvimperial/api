@@ -1,38 +1,56 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const categoryValues = {
-  type: Number,
-  default: 0
-}
-
 const ProgressSchema = new Schema({
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'users',
+    unique: true
   },
-  classic: [{
-    category: {
-      type: String,
-      enum: ["abnormal", 'developmental', "psychological", "industrial", "general"],
-      required: true
-    },
-    level: {
+  classic: {
+    abnormal: {
       type: Number,
-      default: 0,
-    }
-  }],
-  mastery: [{
-    category: {
-      type: String,
-      enum: ["abnormal", 'developmental', "psychological", "industrial", "general"],
-      required:true
+      default: 0
     },
-    level: {
+    developmental: {
       type: Number,
-      default: 0,
+      default: 0
+    },
+    psychological: {
+      type: Number,
+      default: 0
+    },
+    industrial: {
+      type: Number,
+      default: 0
+    },
+    general: {
+      type: Number,
+      default: 0
     }
-  }]
+  },
+  mastery: {
+    abnormal: {
+      type: Number,
+      default: 0
+    },
+    developmental: {
+      type: Number,
+      default: 0
+    },
+    psychological: {
+      type: Number,
+      default: 0
+    },
+    industrial: {
+      type: Number,
+      default: 0
+    },
+    general: {
+      type: Number,
+      default: 0
+    }
+  }
 })
 
 const ProgressModel = mongoose.model("progress", ProgressSchema);

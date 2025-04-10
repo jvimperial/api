@@ -3,11 +3,21 @@ const mongoose = require('mongoose')
 const QuestionsSchema = new mongoose.Schema({
   question:String,
   choices:[{
-    letter:String,
-    text:String,
+    letter:{
+      type:String,
+      enum:["a","b","c","d"],
+      required:true
+    },
+    text:{
+      type: String,
+      required: true
+    },
     rationale:String,
   }],
-  answer:String,
+  answer:{
+    type:String,
+    enum:["a", "b", "c", "d"]
+  },
   ytlink:String,
   image:String,
 })
