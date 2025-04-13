@@ -21,7 +21,7 @@ const MessagesSchema = new Schema({
   },
   time_sent: {
     type: Date,
-    default: Date.now()
+    default: Date.now
   }
 }, { timestamps: true })
 

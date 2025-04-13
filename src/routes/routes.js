@@ -4,6 +4,7 @@ const users = require('../controllers/users.controller');
 const terms = require('../controllers/terms.controller')
 const progress = require('../controllers/progress.controller')
 const chats = require('../controllers/chats.controller')
+const questions = require('../controllers/questions.controller')
 
 router.get('/', (req, res) => res.send(`
   <title>NU Mindify API</title>
@@ -25,5 +26,10 @@ router.post('/progressCategory', progress.progressCategory)
 
 router.get('/getMessages/:id', chats.getMessages);
 router.post('/sendMessage', chats.sendMessage)
+
+router.get('/getQuestions', questions.getQuestions)
+router.post('/addQuestion', questions.addQuestion)
+router.patch('/updateQuestion', questions.updateQuestion)
+
 
 module.exports = router;
