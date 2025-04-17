@@ -5,7 +5,8 @@ const terms = require('../controllers/terms.controller')
 const progress = require('../controllers/progress.controller')
 const chats = require('../controllers/chats.controller')
 const questions = require('../controllers/questions.controller')
-const webusers = require('../controllers/webusers.controller')
+
+const userController = require('../controllers/web/user.controller');
 
 router.get('/', (req, res) => res.send(`
   <title>NU Mindify API</title>
@@ -13,7 +14,6 @@ router.get('/', (req, res) => res.send(`
   <div>Example Usage: <a href="https://nu-mindify-api.vercel.app/api/getTerms">https://nu-mindify-api.vercel.app/api/getTerms</a></div>
   <style>*{text-align:center}</style>
   `))
-
 router.get('/getUsers', users.getUsers);
 router.get('/getUser/:uid', users.getUser);
 router.post('/createUser', users.createUser);
@@ -32,6 +32,7 @@ router.get('/getQuestions', questions.getQuestions)
 router.post('/addQuestion', questions.addQuestion)
 router.patch('/updateQuestion', questions.updateQuestion)
 
-router.get('/getWebUsers', webusers.getWebUsers)
+//web
+router.get('/getWebUsers', userController.getWebUsers);
 
 module.exports = router;
