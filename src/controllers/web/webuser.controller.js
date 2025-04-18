@@ -12,9 +12,9 @@ async function getWebUsers(req, res) {
 
 async function getWebUser(req, res) {
   try {
-    const id = req.params.id
+    const uid = req.params.uid
 
-    const webuser = await WebUsersModel.findOne({id})
+    const webuser = await WebUsersModel.findOne({ uid })
     res.json(webuser)
   } catch (error) {
     console.log(error);

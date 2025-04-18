@@ -35,6 +35,6 @@ router.patch('/updateQuestion', questions.updateQuestion)
 const webusers = require('../controllers/web/webuser.controller')
 
 router.get('/getWebUsers', webusers.getWebUsers);
-router.get('/getWebUser/:id', webusers.getWebUser);
+router.get('/getWebUser/:uid', webusers.getWebUser);
 
 module.exports = router;
