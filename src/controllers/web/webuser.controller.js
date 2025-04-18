@@ -23,4 +23,4 @@ async function getWebUser(req, res) {
 }
 
 
-module.exports = {getWebUsers}
+module.exports = {getWebUsers, getWebUser}
